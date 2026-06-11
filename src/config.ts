@@ -30,7 +30,7 @@ export const CONFIG = {
     entryMomentumPct: 0.35, // require +0.35% move over the momentum window
     momentumWindowSec: 120,
     confirmWindowSec: 30, // short window must also be rising
-    takeProfitPct: 1.8,
+    takeProfitPct: 1.1,
     stopLossPct: 0.9,
     trailingArmPct: 1.0, // start trailing once up 1.0%
     trailingGivebackPct: 0.5, // exit if price falls 0.5% from the high
