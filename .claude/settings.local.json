@@ -1,0 +1,17 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npm --version)",
+      "Bash(curl -s --max-time 10 \"https://lite-api.jup.ag/price/v3?ids=So11111111111111111111111111111111111111112,JUPyiwrYJFskUPiHa7hkeR8VUtAeFoSYbKedZNsDvCN\")",
+      "Bash(npm install *)",
+      "Bash(npx tsc *)",
+      "Bash(npm run *)",
+      "Bash(curl -s localhost:3000/api/state)",
+      "Bash(curl -s localhost:3000/)",
+      "Bash(timeout 7 curl -sN localhost:3000/api/stream)",
+      "Bash(python3 -c ' *)",
+      "Bash(cat)",
+      "Bash(npx tsx *)"
+    ]
+  }
+}

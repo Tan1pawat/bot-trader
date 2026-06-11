@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PaperTrade — Solana</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header>
+    <h1>PaperTrade <span class="chain">Solana</span></h1>
+    <div class="header-right">
+      <span id="conn" class="conn">connecting…</span>
+      <button id="settings-btn" title="Tuner &amp; API key settings">⚙ Settings</button>
+      <button id="reset-btn" title="Reset portfolio to starting balance">Reset</button>
+    </div>
+  </header>
+
+  <section class="stats">
+    <div class="stat">
+      <div class="stat-label">Equity</div>
+      <div class="stat-value" id="equity">—</div>
+    </div>
+    <div class="stat">
+      <div class="stat-label">Today's P&amp;L</div>
+      <div class="stat-value" id="day-pnl">—</div>
+    </div>
+    <div class="stat">
+      <div class="stat-label">Total P&amp;L</div>
+      <div class="stat-value" id="total-pnl">—</div>
+    </div>
+    <div class="stat">
+      <div class="stat-label">Trades / Win rate</div>
+      <div class="stat-value" id="trade-stats">—</div>
+    </div>
+  </section>
+
+  <section class="target">
+    <div class="target-header">
+      <span>Daily target progress</span>
+      <span id="target-text">— / 10%</span>
+    </div>
+    <div class="target-bar"><div id="target-fill"></div></div>
+  </section>
+
+  <section class="panel">
+    <h2>Equity (24h)</h2>
+    <canvas id="equity-chart" height="160"></canvas>
+  </section>
+
+  <div class="columns">
+    <section class="panel">
+      <h2>Open positions</h2>
+      <table id="positions">
+        <thead><tr><th>Token</th><th>Qty</th><th>Entry</th><th>Now</th><th>Value</th><th>P&amp;L</th><th>Age</th></tr></thead>
+        <tbody></tbody>
+      </table>
+      <div id="no-positions" class="empty">No open positions — waiting for a momentum signal</div>
+    </section>
+
+    <section class="panel">
+      <h2>Watchlist</h2>
+      <table id="watchlist">
+        <thead><tr><th>Token</th><th>Price</th><th>2m momentum</th><th></th></tr></thead>
+        <tbody></tbody>
+      </table>
+    </section>
+  </div>
+
+  <section class="panel">
+    <div class="panel-header">
+      <h2>Strategy tuner <span id="tuner-status" class="tuner-status"></span></h2>
+      <button id="run-now-btn" title="Ask the model to review performance and adjust parameters now">Run now</button>
+    </div>
+    <div id="tuner-params" class="tuner-params"></div>
+    <div id="tuner-rationale" class="tuner-rationale"></div>
+  </section>
+
+  <section class="panel">
+    <h2>Recent trades</h2>
+    <table id="trades">
+      <thead><tr><th>Time</th><th>Side</th><th>Token</th><th>Qty</th><th>Price</th><th>P&amp;L</th><th>Reason</th></tr></thead>
+      <tbody></tbody>
+    </table>
+    <div id="no-trades" class="empty">No trades yet</div>
+  </section>
+
+  <div id="settings-modal" class="modal hidden">
+    <div class="modal-box">
+      <div class="modal-header">
+        <h2>Tuner settings</h2>
+        <button id="settings-close" class="modal-close" title="Close">✕</button>
+      </div>
+
+      <label class="field checkbox-field">
+        <input type="checkbox" id="set-enabled">
+        <span>Automatic tuning enabled</span>
+      </label>
+
+      <label class="field">
+        <span>Provider</span>
+        <select id="set-provider"></select>
+      </label>
+
+      <label class="field">
+        <span>Model</span>
+        <input id="set-model" list="model-list" autocomplete="off" spellcheck="false">
+        <datalist id="model-list"></datalist>
+      </label>
+
+      <label class="field">
+        <span>Interval (minutes)</span>
+        <input type="number" id="set-interval" min="1" step="1">
+      </label>
+
+      <div class="field-group-label">API keys <span class="muted">(stored in <code>.env</code>, never shown again)</span></div>
+      <div id="key-fields"></div>
+
+      <div class="modal-actions">
+        <span id="settings-msg" class="settings-msg"></span>
+        <button id="save-settings-btn" class="primary">Save</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
